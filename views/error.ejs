@@ -1,0 +1,12 @@
+<%- include('partials/head')  %>
+<link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+
+        <div class="errorContainer">
+            <h2 class="errorMessage"><%= message  %> </h2>
+            <h4 class="errorStatus"><%= status  %> </h4>
+            <p class="errorStack"><%= stack  %> </p>
+        </div>
+
+    <%- include('partials/end')  %> 

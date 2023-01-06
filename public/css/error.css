@@ -1,0 +1,24 @@
+.errorContainer{
+    min-height:100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.errorMessage{
+    font-size:2.6rem;
+    text-align: center;
+}
+
+.errorStatus{
+    margin-top:1.5rem;
+    font-size:2rem;
+    text-align: center;
+    color:rgb(138, 4, 4);
+}
+
+.errorStack{
+    color:#6e6e6e;
+    font-size:1.6rem;
+}

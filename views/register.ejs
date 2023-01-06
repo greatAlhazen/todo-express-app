@@ -6,23 +6,23 @@
 <div class="formContainer">
 
 
-    <form action="#" class="form">
+    <form action="/auth/signup" method="POST" class="form">
         <h1 class="formTitle">Sign Up</h1>
         <div class="inputBox">
             <label class="fas fa-user"></label>
-            <input type="text" id="username" placeholder="enter your username">
+            <input type="text" name="username" id="username" placeholder="enter your username">
             <span class="error" id="nameError"></span>
         </div>
 
         <div class="inputBox">
             <label class="fa-solid fa-envelope"></label>
-            <input type="email" id="email" placeholder="enter your email">
+            <input type="email" name="email" id="email" placeholder="enter your email">
             <span class="error" id="emailError"></span>
         </div>
 
         <div class="inputBox password">
             <label class="fa-solid fa-key"></label>
-            <input type="password" id="password" placeholder="enter your password">
+            <input type="password" name="password" id="password" placeholder="enter your password">
             <i class="fa-regular fa-eye"></i>
             <i class="fa-regular fa-eye-slash"></i>
             <span class="error" id="passwordError"></span>
