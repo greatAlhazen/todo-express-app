@@ -3,7 +3,18 @@
 </head>
 <body>
 
-    <h1 class="test">hello</h1>
+   <header>
+    <img src="/images/icon.png" alt="logo">
+    <div class="lists">
+        <ul>
+            <li><a href="/auth/signup">Register</a></li>
+            <li><a href="/auth/signin">Login</a></li>
+            <li><form action="/auth/logout">
+                <button type="submit">Logout</button>
+            </form></li>
+        </ul>
+    </div>
+   </header>
 
 
     <%- include('partials/end')  %> 

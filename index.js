@@ -5,7 +5,8 @@ import path from 'path';
 import session from 'express-session';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import User from './models/user';
+import User from './models/user.js';
+import flash from 'connect-flash';
 
 // nodejs version __dirname bug detailed information: https://github.com/nodejs/help/issues/2907
 import { fileURLToPath } from 'url';
@@ -25,6 +26,16 @@ dotenv.config();
 //define url encoded for parsing form data
 app.use(express.urlencoded({ extended: true }));
 
+const secret = process.env.SESSION_SECRET;
+app.use(session({
+    name:'session',
+    secret,
+    resave: false,
+    saveUninitialized: true,
+}));
+
+
+
 
 // ejs configuration
 app.set('view engine','ejs');
@@ -35,25 +46,25 @@ app.use(express.static(path.join(__dirname,'public')));
 
 
 // session configuration
-const secret = process.env.SESSION_SECRET;
-app.use(session({
-    name:'session',
-    secret,
-    resave: false,
-    saveUninitialized: true,
-}));
+
 
 // passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(User.deserializeUser()); 
 
-
+// flash confguration
+app.use(flash());
+app.use((req,res,next) =>{
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+}) 
 
 // routes configuration
-import homeRoute from './routes/home';
+import homeRoute from './routes/home.js';
 app.use(homeRoute);
 import authRoutes from './routes/auth.js';
 app.use('/auth',authRoutes);
