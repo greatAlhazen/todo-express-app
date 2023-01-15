@@ -35,3 +35,111 @@ header img{
     color:#fff;
     ;
 }
+
+.userAbout{
+    width:100vw;
+    display:grid;
+    grid-template-columns: 60vw 40vw;
+    padding:2.5rem;
+}
+
+.main{
+    grid-column: 1/2;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main h1{
+    font-size:4rem;
+    text-align: center;
+}
+
+.todo{
+    width:70%;
+    display:flex;
+    align-items: center;
+    margin-top:5rem;
+}
+
+.todo i{
+    font-size:2rem;
+    margin-top:2rem;
+    cursor: pointer;
+}
+
+.todo i:first-child{
+    margin-right:1rem;
+    color:#1da1f2;
+}
+
+.todo i:last-child{
+    margin-left:1rem;
+    color:#bd081c;
+}
+
+.todo .detail h2{
+    text-align: center;
+    font-size:1.8rem;
+    margin-bottom:2rem;
+}
+
+.todo .detail h3{
+    text-align: justify;
+    font-size:1.3rem;
+    color:#808080;
+    margin-bottom: 1rem;
+}
+
+.todo .detail h4{
+    text-align: left;
+    font-size:1.1rem;
+    color:#bd081c;
+}
+
+.form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+}
+
+.form h1{
+    text-align: center;
+    font-size:4rem;
+}
+
+.form input,textarea{
+    width:30vw;
+    border:2px solid #1da1f2;
+    border-radius: .5rem;
+}
+
+
+
+.form textarea{
+    height:20rem;
+    resize: none;
+}
+
+
+
+
+
+@media (max-width:840px) {
+    .todo{
+        width:100%;
+        padding-left: 2rem;
+    }
+
+    .userAbout{
+        display:flex;
+        flex-direction: column-reverse;
+        gap:4rem;
+    }
+
+    .form input,textarea{
+        width:60vw;
+    }
+}

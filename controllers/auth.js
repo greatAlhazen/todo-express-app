@@ -29,3 +29,9 @@ export const signin =(req,res) =>{
     res.redirect('/');
 }
 
+export const logout = (req,res) =>{
+    req.logout();
+    req.flash('success','see you later again');
+    res.redirect('/');
+}
+

@@ -7,14 +7,65 @@
     <img src="/images/icon.png" alt="logo">
     <div class="lists">
         <ul>
+            <% if(!loggedInUser) {%>
             <li><a href="/auth/signup">Register</a></li>
             <li><a href="/auth/signin">Login</a></li>
+            <% } else {%>
             <li><form action="/auth/logout">
                 <button type="submit">Logout</button>
             </form></li>
+            <% } %>
         </ul>
     </div>
    </header>
+
+   <section class="userAbout">
+    <div class="main">
+        <h1>My Todos</h1>
+        <div class="todo">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <div class="detail">
+            <h2>Run</h2>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
+            <h4>20.01.2022</h4>
+        </div>
+        <i class="fas fa-trash"></i>
+        </div>
+        <div class="todo">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <div class="detail">
+            <h2>Run</h2>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
+            <h4>20.01.2022</h4>
+        </div>
+        <i class="fas fa-trash"></i>
+        </div>
+        <div class="todo">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <div class="detail">
+            <h2>Run</h2>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
+            <h4>20.01.2022</h4>
+        </div>
+        <i class="fas fa-trash"></i>
+        </div>
+        <div class="todo">
+            <i class="fa-solid fa-clipboard-list"></i>
+            <div class="detail">
+            <h2>Run</h2>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
+            <h4>20.01.2022</h4>
+        </div>
+        <i class="fas fa-trash"></i>
+        </div>
+    </div>
+    <form action="#" class="form">
+        <h1>Create Todo</h1>
+        <input type="text" placeholder="enter title">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <input type="date" name="" id="">
+    </form>
+   </section>
 
 
     <%- include('partials/end')  %> 

@@ -8,6 +8,7 @@
 html{
     font-size:62.5%;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body{
@@ -57,4 +58,17 @@ button{
     font-size:2.4rem;
     background-color: transparent;
     margin-top:-1.8rem;
+}
+
+
+@media (max-width:768px){
+    html{
+        font-size:55%;
+    }
+}
+
+@media (max-width:490px){
+    html{
+        font-size:50%;
+    }
 }
