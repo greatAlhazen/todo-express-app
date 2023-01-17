@@ -11,7 +11,8 @@
             <li><a href="/auth/signup">Register</a></li>
             <li><a href="/auth/signin">Login</a></li>
             <% } else {%>
-            <li><form action="/auth/logout">
+            <li>
+                <form action="/auth/logout" method="POST">
                 <button type="submit">Logout</button>
             </form></li>
             <% } %>
@@ -22,48 +23,29 @@
    <section class="userAbout">
     <div class="main">
         <h1>My Todos</h1>
+        <% if (Array.isArray(todos)) {%>
+            <% for(let todo of todos) { %>
         <div class="todo">
             <i class="fa-solid fa-clipboard-list"></i>
             <div class="detail">
-            <h2>Run</h2>
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
-            <h4>20.01.2022</h4>
+            <h2><%= todo.title  %> </h2>
+            <h3><%= todo.desc  %> </h3>
+            <h4><%= todo.schedule.toDateString() %></h4>
         </div>
         <i class="fas fa-trash"></i>
         </div>
-        <div class="todo">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <div class="detail">
-            <h2>Run</h2>
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
-            <h4>20.01.2022</h4>
-        </div>
-        <i class="fas fa-trash"></i>
-        </div>
-        <div class="todo">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <div class="detail">
-            <h2>Run</h2>
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
-            <h4>20.01.2022</h4>
-        </div>
-        <i class="fas fa-trash"></i>
-        </div>
-        <div class="todo">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <div class="detail">
-            <h2>Run</h2>
-            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum officiis sunt dolores dolore nemo adipisci blanditiis at excepturi, quia unde accusamus nihil illo sapiente? Perspiciatis architecto perferendis aliquid excepturi quae!</h3>
-            <h4>20.01.2022</h4>
-        </div>
-        <i class="fas fa-trash"></i>
-        </div>
+        <% } %>
+        <% } else {%>
+            <p><%= todos %> </p>
+            <% } %>
     </div>
-    <form action="#" class="form">
+    <form action="/create" method="POST">
         <h1>Create Todo</h1>
-        <input type="text" placeholder="enter title">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-        <input type="date" name="" id="">
+        <input type="text" id="title" name="title" placeholder="enter title">
+        <textarea name="desc" id="desc" cols="30" rows="10">
+        </textarea>
+        <input type="date" name="schedule">
+        <button type="subit" class="btn">Create</button>
     </form>
    </section>
 

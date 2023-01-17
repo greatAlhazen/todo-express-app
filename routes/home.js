@@ -1,9 +1,10 @@
 import express from 'express';
+import { createTodo, fetchTodos } from '../controllers/todos.js';
 
 const router = express.Router();
 
-router.get('/',(req,res) =>{
-    res.render('home');
-})
+router.get('/',fetchTodos);
+
+router.post('/create',createTodo);
 
 export default router;

@@ -6,7 +6,7 @@ const UserModel = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    }
+    },
 });
 
 UserModel.plugin(passportLocalMongoose);
