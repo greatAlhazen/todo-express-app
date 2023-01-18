@@ -1,0 +1,21 @@
+<%- include('partials/head')  %>
+<link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+
+
+    <%- include('partials/navbar')  %>
+
+    <form action="/<%=todo._id%>?_method=PUT" method="POST">
+        <h1>Update Todo</h1>
+        <input type="text" id="title" name="title" value="<%= todo.title %>" placeholder="enter title">
+        <textarea name="desc" id="desc"><%=todo.desc %></textarea>
+        <input
+         type="date"
+         value="<%= todo.schedule.getFullYear() + '-' + ("0" + (todo.schedule.getMonth() + 1)).slice(-2) + '-' + ("0" + todo.schedule.getDate()).slice(-2) %>" 
+         name="schedule"
+         >
+        <button type="subit" class="btn">Update</button>
+    </form>
+
+    <%- include('partials/end')  %> 

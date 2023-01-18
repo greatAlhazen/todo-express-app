@@ -3,22 +3,10 @@
 </head>
 <body>
 
-   <header>
-    <img src="/images/icon.png" alt="logo">
-    <div class="lists">
-        <ul>
-            <% if(!loggedInUser) {%>
-            <li><a href="/auth/signup">Register</a></li>
-            <li><a href="/auth/signin">Login</a></li>
-            <% } else {%>
-            <li>
-                <form action="/auth/logout" method="POST">
-                <button type="submit">Logout</button>
-            </form></li>
-            <% } %>
-        </ul>
-    </div>
-   </header>
+
+    <%- include('partials/navbar')  %>
+
+    <%- include('partials/flash')  %>
 
    <section class="userAbout">
     <div class="main">
@@ -26,13 +14,16 @@
         <% if (Array.isArray(todos)) {%>
             <% for(let todo of todos) { %>
         <div class="todo">
-            <i class="fa-solid fa-clipboard-list"></i>
+            <a href="/<%= todo._id %>"><i class="fa-solid fa-clipboard-list"></i></a>
+           
             <div class="detail">
             <h2><%= todo.title  %> </h2>
             <h3><%= todo.desc  %> </h3>
             <h4><%= todo.schedule.toDateString() %></h4>
         </div>
-        <i class="fas fa-trash"></i>
+        <form action="/<%=todo._id%>?_method=DELETE" method="POST">
+            <button type="submit"><i class="fas fa-trash"></i></button>
+        </form>
         </div>
         <% } %>
         <% } else {%>
@@ -42,8 +33,7 @@
     <form action="/create" method="POST">
         <h1>Create Todo</h1>
         <input type="text" id="title" name="title" placeholder="enter title">
-        <textarea name="desc" id="desc" cols="30" rows="10">
-        </textarea>
+        <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
         <input type="date" name="schedule">
         <button type="subit" class="btn">Create</button>
     </form>

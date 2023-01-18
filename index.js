@@ -7,6 +7,7 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import User from './models/user.js';
 import flash from 'connect-flash';
+import methodOverride from 'method-override';
 
 // nodejs version __dirname bug detailed information: https://github.com/nodejs/help/issues/2907
 import { fileURLToPath } from 'url';
@@ -35,6 +36,8 @@ app.use(session({
 }));
 
 
+// method override configuration
+app.use(methodOverride('_method'));
 
 
 // ejs configuration
@@ -55,6 +58,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser()); 
 
+
+
 // flash confguration
 app.use(flash());
 app.use((req,res,next) =>{
@@ -62,7 +67,9 @@ app.use((req,res,next) =>{
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
-}) 
+});
+
+
 
 // routes configuration
 import homeRoute from './routes/home.js';

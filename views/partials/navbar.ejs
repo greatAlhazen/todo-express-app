@@ -1,0 +1,16 @@
+<header>
+    <img src="/images/icon.png" alt="logo">
+    <div class="lists">
+        <ul>
+            <% if(!loggedInUser) {%>
+            <li><a href="/auth/signup">Register</a></li>
+            <li><a href="/auth/signin">Login</a></li>
+            <% } else {%>
+            <li>
+                <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form></li>
+            <% } %>
+        </ul>
+    </div>
+   </header>

@@ -2,21 +2,15 @@ import Todos from '../models/todos.js';
 import User from '../models/todos.js';
 
 export const createTodo = async(req,res,next) =>{
-
-     if(req.user){
         try{
             const todo = new Todos(req.body);
             todo.owner = req.user._id;
             await todo.save();
+            req.flash('success','successfully create todo');
             res.redirect('/');
         }catch(err){
             next(err);
         }
-
-    }else{
-        req.flash('error','You are not authenticated');
-        res.redirect('/auth/signin');
-    };
 };
 
 export const fetchTodos = async(req,res,next) =>{
@@ -31,7 +25,6 @@ export const fetchTodos = async(req,res,next) =>{
                 userTodos = 'For Create Todos You must be Login';
             }
           
-          console.log(userTodos);
           res.render('home',{
             todos: userTodos,
           })
@@ -40,3 +33,35 @@ export const fetchTodos = async(req,res,next) =>{
         }
 }
 
+export const updateTodosPage = async(req,res,next) =>{
+        try{
+            const todo = await Todos.findById(req.params.id);
+            res.render('update',{todo});
+        }
+        catch(err){
+            next(err)
+        }
+}
+
+export const updateTodos = async(req,res,next) =>{
+    try{
+        req.body.owner = req.user._id;
+        await Todos.findByIdAndUpdate(req.params.id,{
+            '$set':req.body
+        },{new:true});
+        req.flash('success','successfully update todo');
+        res.redirect('/');
+    }catch(err){
+        next(err);
+    }
+}
+
+export const deleteTodo = async(req,res,next) =>{
+    try{
+        await Todos.findByIdAndDelete(req.params.id);
+        req.flash('success','successfully delete todo');
+        res.redirect('/')
+    }catch(err){
+        next(err);
+    }
+}
