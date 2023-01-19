@@ -79,7 +79,7 @@ header img{
     min-width: 25rem;
     max-height: 6rem;
     position: absolute;
-    top:2rem;
+    top:6rem;
     left:50%;
     transform: translateX(-50%);
     display: flex;
@@ -90,16 +90,17 @@ header img{
 }
 
 .succesMessages{
-    background-color: tomato;
+    background-color: green;
 }
 
 .errorMessages{
-    background-color: green;
+    background-color: tomato;
 }
 
 .closeMessages{
     font-size:2.4rem;
     background-color: transparent;
+    margin-top:-.2rem;
 }
 
 

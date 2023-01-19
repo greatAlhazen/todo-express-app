@@ -6,6 +6,8 @@
 
     <%- include('partials/navbar')  %>
 
+    <%- include('partials/flash')  %>
+
     <form action="/<%=todo._id%>?_method=PUT" method="POST">
         <h1>Update Todo</h1>
         <input type="text" id="title" name="title" value="<%= todo.title %>" placeholder="enter title">
