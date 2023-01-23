@@ -107,7 +107,7 @@ form p{
     margin-top:1.5rem;
 }
 
-form p span{
+form p a{
     text-decoration: underline;
     font-size:2rem;
     cursor: pointer;

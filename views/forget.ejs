@@ -1,0 +1,17 @@
+<%- include('partials/head')  %>
+<link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+
+    
+    <%- include('partials/navbar')  %>
+
+    <%- include('partials/flash')  %>
+
+    <form action="/auth/forget" method="POST">
+        <h1>please enter your email</h1>
+        <input type="email" name="email">
+        <button type="submit" class="btn">send</button>
+    </form>
+
+    <%- include('partials/end')  %> 

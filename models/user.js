@@ -7,6 +7,12 @@ const UserModel = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    passwordResetToken: {
+        type:String,
+    },
+    passwordResetTokenExp:{
+        type:Date
+    }
 });
 
 UserModel.plugin(passportLocalMongoose);

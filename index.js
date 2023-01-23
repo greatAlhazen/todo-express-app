@@ -9,6 +9,9 @@ import User from './models/user.js';
 import flash from 'connect-flash';
 import methodOverride from 'method-override';
 
+
+
+
 // nodejs version __dirname bug detailed information: https://github.com/nodejs/help/issues/2907
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -23,6 +26,7 @@ connectDatabase(mongoUrl);
 // server configuration
 const app = express();
 dotenv.config();
+
 
 //define url encoded for parsing form data
 app.use(express.urlencoded({ extended: true }));
