@@ -31,6 +31,7 @@ dotenv.config();
 //define url encoded for parsing form data
 app.use(express.urlencoded({ extended: true }));
 
+// session configuration
 const secret = process.env.SESSION_SECRET;
 app.use(session({
     name:'session',
@@ -51,8 +52,6 @@ app.set('views',path.join(__dirname,'views'));
 // static folder configuration
 app.use(express.static(path.join(__dirname,'public')));
 
-
-// session configuration
 
 
 // passport configuration
