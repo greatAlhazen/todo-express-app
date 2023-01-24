@@ -1,7 +1,6 @@
 import User from "../models/user.js";
 import crypto from "crypto";
-import sendEmail from '../config/sendmail.js';
-
+import sendEmail from "../config/sendmail.js";
 
 export const registerPage = (req, res) => {
   res.render("register");
@@ -61,27 +60,24 @@ export const forgetPost = async (req, res, next) => {
         if (!user) {
           req.flash("error", "No account found");
           res.redirect("/auth/forget");
-        }else{
-
+        } else {
           ///save token in database
-            user.passwordResetToken = token;
-            user.passwordResetTokenExp = Date.now() + 2400000;
-    
-            await user.save();
-            
-           ///custom mail options
-            const subject = 'Change password';
-            const to = req.body.email;
-            const html = ` <p>for password reset
+          user.passwordResetToken = token;
+          user.passwordResetTokenExp = Date.now() + 2400000;
+
+          await user.save();
+
+          ///custom mail options
+          const subject = "Change password";
+          const to = req.body.email;
+          const html = ` <p>for password reset
             <a href=${process.env.RESET_PASSWORD_URL}/${token}>click</a>
             </p>
-            `
+            `;
 
-         const result = sendEmail(to,subject,html);
-         console.log(result);
-          req.flash('success','Check your email');
-          res.redirect('/');
-            
+          sendEmail(to, subject, html);
+          req.flash("success", "Check your email");
+          res.redirect("/");
         }
       }
     });
@@ -90,26 +86,54 @@ export const forgetPost = async (req, res, next) => {
   }
 };
 
-export const resetPage = async(req,res,next) =>{
-    const token = req.params.token;
-    try{
+export const resetPage = async (req, res, next) => {
+  const token = req.params.token;
+  try {
+    //token check
+    const user = await User.findOne({
+      passwordResetToken: token,
+      passwordResetTokenExp: {
+        $gt: Date.now(),
+      },
+    });
 
-      //token check
-        const user = await User.findOne({
-            passwordResetToken: token, 
-            passwordResetTokenExp:{
-            $gt: Date.now()
-        }});
-
-        if(!user){
-            req.flash('error','link unexpired');
-            res.redirect('/');
-        }else{
-            res.render('new-password');
-        }
-    }catch(err){
-        next(err);
+    if (!user) {
+      req.flash("error", "Password reset token is invalid or has expired.");
+      res.redirect("/");
+    } else {
+      res.render("new-password",{token});
     }
-}
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const resetPost = async (req, res, next) => {
+  const newPassword = req.body.password;
+  const token = req.params.token;
+  
+  try {
+    //find user and delete
+    const user = await User.findOneAndDelete({
+      passwordResetToken: token,
+      passwordResetTokenExp: {
+        $gt: Date.now(),
+      },
+    });
+
+    //new user with existing credentials and new password
+    const {email,username} = user;
+    const newUser = new User({email,username})
+
+   const chnagedUser = await User.register(newUser, newPassword);
+    req.login(chnagedUser, (err) => {
+      if (err) return next(err);
+      req.flash("success", "successfuly change password");
+      res.redirect("/");
+    });
 
 
+  } catch (err) {
+    next(err);
+  }
+};

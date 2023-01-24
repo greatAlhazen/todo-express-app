@@ -15,6 +15,7 @@ const UserModel = new mongoose.Schema({
     }
 });
 
+//passport localize mongo
 UserModel.plugin(passportLocalMongoose);
 
 export default mongoose.model('User',UserModel);

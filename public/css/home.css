@@ -84,19 +84,19 @@
     color:#bd081c;
 }
 
-form{
+.homeForm{
     display:flex;
     flex-direction: column;
     align-items: center;
     gap:1rem;
 }
 
-form h1{
+.homeForm h1{
     text-align: center;
     font-size:4rem;
 }
 
-form input,textarea{
+.homeForm input,textarea{
     width:30vw;
     border:2px solid #1da1f2;
     border-radius: .5rem;
@@ -104,12 +104,12 @@ form input,textarea{
 }
 
 
-form textarea{
+.homeForm textarea{
     height:20rem;
     resize: none;
 }
 
-form .btn{
+.homeForm .btn{
     font-size:1.5rem;
     width:13rem;
     background-color: #fff;
@@ -121,7 +121,7 @@ form .btn{
     text-transform: uppercase;
 }
 
-form .btn:hover{
+.homeForm .btn:hover{
     background-color: #bd081c;
     color:#fff;
     ;
@@ -129,9 +129,39 @@ form .btn:hover{
 
 
 
+/* chnage password custom style */
+.inputBox{
+    width:30vw;
+    height:2rem;
+    margin-bottom:3rem;
+    position: relative;
+}
+
+.inputBox input{
+    width:100%;
+    border:2px solid #1da1f2;
+    border-radius: .5rem;
+    padding:1rem;
+}
+
+.inputBox i{
+    position: absolute;
+    top:1.4rem;
+    right:1rem;
+    color:black;
+}
+
+.inputBox i:first-child{
+    display: none;
+}
+
 
 
 @media (max-width:840px) {
+    .homeForm{
+        margin-top:3rem;
+    }
+
     .todo{
         width:100%;
         padding-left: 2rem;
@@ -143,7 +173,12 @@ form .btn:hover{
         gap:4rem;
     }
 
-    .form input,textarea{
+    .homeForm input,textarea{
         width:60vw;
     }
+
+    .inputBox{
+        width:60vw;
+    }
+
 }

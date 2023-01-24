@@ -1,6 +1,6 @@
 import express from 'express';
 import passport from 'passport';
-import { forgetPage, forgetPost, loginPage, logout, registerPage, resetPage, signin, signup } from '../controllers/auth.js';
+import { forgetPage, forgetPost, loginPage, logout, registerPage, resetPage, resetPost, signin, signup } from '../controllers/auth.js';
 
 const router = express.Router();
 
@@ -12,6 +12,6 @@ router.post('/logout',logout);
 
 router.route('/forget').get(forgetPage).post(forgetPost);
 
-router.route('/reset/:token').get(resetPage)
+router.route('/reset/:token').get(resetPage).post(resetPost)
 
 export default router;

@@ -52,7 +52,7 @@ const sendEmail = async (to,subject,html) => {
       const result = await transport.sendMail(mailOptions);
       return result;
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   };
 

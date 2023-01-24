@@ -1,14 +1,15 @@
 import Todos from '../models/todos.js';
-import User from '../models/todos.js';
 import { validationResult } from 'express-validator';
 
 export const createTodo = async(req,res,next) =>{
+    //custom validation error check
     const errors = validationResult(req);
     if(!errors.isEmpty()){
             const error = errors.array()[0].msg
             req.flash('error',error);
             res.redirect('/');
     }else{
+        //validation ok!
         try{
             const todo = new Todos(req.body);
             todo.owner = req.user._id;
@@ -53,12 +54,14 @@ export const updateTodosPage = async(req,res,next) =>{
 }
 
 export const updateTodos = async(req,res,next) =>{
+    //custom validation error check
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         const error = errors.array()[0].msg
         req.flash('error',error);
         res.redirect(`/${req.params.id}`);
     }else{
+        ///validation ok!
         try{
             req.body.owner = req.user._id;
             await Todos.findByIdAndUpdate(req.params.id,{
